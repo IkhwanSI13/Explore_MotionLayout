@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-    motion:defaultDuration
-        duration digunakan jika tidak ada spesifikasi durasi di transisi
--->
-
+<?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto"
     motion:defaultDuration="500">
@@ -11,108 +7,22 @@
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
         motion:duration="1000">
-        <!--
-            motion:autoTransition="animateToEnd"
-            desc: animasi langsung berjalan ketika oncreate
-
-            motion:motionInterpolator=""
-            desc: untuk mengatur perubahan kecepatan dalam animasi
-
-            Transition bisa lebih dari satu di setiap motion layout
-        -->
 
         <KeyFrameSet></KeyFrameSet>
 
-        <!--
-        <OnClick motion:clickAction="jumpToEnd|transitionToStart"/>
-
-            <OnClick motion:targetId="@id/view2"/>
-            desc: memilih id yang mana menjadi trigger untuk animasi berjalan
-
-            <OnClick />
-            desc: click dibagian manapun akan mentrigger animasi untuk berjalan, sangat berguna untuk
-                  animasi komponen
-
-            clickAction
-            desc: menentukan state layout, dan transisi yang digunakan ke state akhir atau ke awal
-        -->
-
         <OnSwipe
-            motion:dragDirection="dragUp"
-            motion:touchAnchorId="@id/view2"
             motion:onTouchUp="autoCompleteToEnd"
-            />
-        <!--
-            motion:touchAnchorSide="bottom"
-            desc: ?
+            motion:touchAnchorId="@id/view2"/>
 
-            motion:touchAnchorId="@id/view2"
-            desc: menjadi triger di view yang mana swipe mulai di trigger, seperti halnya tergaetId
-                  pada onclick, contoh penggunannya pada scrollview
+    </Transition>
 
-            motion:onTouchUp="stop"
-            desc: mengatur aksi apa yang akan dilakukan ketika swipe berhenti dilakukan
-                  stop: animasi juga berhenti ketika swipe berhenti
-                  autoCompleteToEnd: animasi akan dilanjutkan sampai akhir meskipun swipe
-                                     tidak dilakukan lagi
-                  decelrate: animasi nya berhenti setelah beberapa detik,
-                             seperti mobil yang dikecepatan 50, lalu mau berhenti terjadi
-                             penurunan kecepatan. progres menuju berhenti masih membuat mobil
-                             tersebut menempuh jarak
-
-                             seperti itu juga animasi, ketika swipe dilepas, progres state masih
-                             berlanjut sampai aceleratenya 0 atau habis.
-        -->
-
-</Transition>
-
-<ConstraintSet android:id="@+id/start">
-<!--
-    jika kosong, bisa dianggap dengan posisi awal layout yang menggunakan scene ini,
-    dalam project ini berarti, activity_main.xml
--->
+    <ConstraintSet android:id="@+id/start">
         <Constraint android:id="@+id/view2">
-            <CustomAttribute
-                motion:attributeName="backgroundColor"
-                motion:customColorValue="@color/colorAccent"
-                />
         </Constraint>
     </ConstraintSet>
 
-    <ConstraintSet
-        android:id="@+id/end">
-        <!--
-            motion:deriveConstraintsFrom="@+id/start"
-            bisa melihat schema animasi?
-        -->
-        <!--
-            <Constraint android:id="@+id/view2">
-                <Layout />
-                    desc : Posisi dan ukuran akhir dari layout
-                <Transform />
-                    desc : Animasi
-                <PropertySet />
-                    desc : Koleksi yang biasanya ada di view, seperti visibility
-                <Motion />  FAIL
-                    desc : Motion layout control command, penggunaan digabungkan dengan layout
-                           jika sebelumnya animasi bergerak lurus, dengan motion bisa
-                           membuat pergerakan melengkung
-                <CustomAttribute />
-                    desc : Memperbolehkan pemanggilan semua method dengan diawali dengan set
-                           property ini harus diatur di awal dan juga diakhir Constraint
-            </Constraint>
-            *Jika layout, transform sampai dengan custom atribute tidak dideklarasikan maka
-                akan menggunakan base layoutnya
-
-        -->
+    <ConstraintSet android:id="@+id/end">
         <Constraint android:id="@+id/view2">
-            <CustomAttribute
-                motion:attributeName="backgroundColor"
-                motion:customColorValue="#89F26D"
-                />
-<!--            <Motion-->
-<!--                motion:pathMotionArc="startVertical"-->
-<!--                />-->
             <Layout
                 android:layout_width="200dp"
                 android:layout_height="128dp"
@@ -121,14 +31,7 @@
                 motion:layout_constraintBottom_toBottomOf="parent"
                 motion:layout_constraintEnd_toEndOf="parent"
                 motion:layout_constraintTop_toTopOf="parent" />
-<!--            <Transform-->
-<!--                android:rotation="45"-->
-<!--                android:translationZ="20dp"-->
-<!--                android:rotationY="10"-->
-<!--                />-->
-<!--            <PropertySet android:visibility="invisible" />-->
         </Constraint>
-
     </ConstraintSet>
 
 </MotionScene>

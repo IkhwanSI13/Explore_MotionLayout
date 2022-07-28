@@ -19,3 +19,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#### TRY
+#untuk tidak obfuscate
+#-dontobfuscate
+
+# Gson use reflection, so tidak pernah di read,
+# klo pun bisa, dia akan mengganti nama fieldny, menjadi sort
+# user rule,
+# contoh packagaName : id.yukngoding.acak.model.java
+# -keep class packagaName (
+# public java,lang.String name;
+# )
